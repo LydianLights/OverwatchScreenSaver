@@ -1,7 +1,7 @@
-﻿<Application x:Class="Overwatch_ScreenSaver.App"
+﻿<Application x:Class="OverwatchScreenSaver.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Overwatch_ScreenSaver"
+             xmlns:local="clr-namespace:OverwatchScreenSaver"
              Startup="Application_Startup">
     <Application.Resources>
         <BitmapImage x:Key="DVa" UriSource="pack://application:,,,/Images/DVa.png" />

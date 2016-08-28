@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WpfScreenHelper;
 
-namespace Overwatch_ScreenSaver
+namespace OverwatchScreenSaver
 {
     //Three possible arguments
     // /p = show screensaver preview

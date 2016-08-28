@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace Overwatch_ScreenSaver
+namespace OverwatchScreenSaver
 {
     public partial class ScreenSaverWindow : Window
     {
