@@ -17,7 +17,7 @@ namespace OverwatchScreenSaver
     // /p and /c may be passed with a number representing the window handler (separated by either a space or a colon)
     // ex /p:1234567 or /c 1234567
 
-    //If no arguments behave as if /c was passed
+    //If no arguments behave as if /s was passed
 
     public partial class App : Application
     {

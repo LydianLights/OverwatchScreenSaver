@@ -82,25 +82,29 @@ namespace OverwatchScreenSaver
         #region Animation
         //spawn images and move them around based on the timer
         List<Image> imageList = new List<Image>();
-        Vector velocity = new Vector(-1, 1);
-        Random r = new Random();
+        Random rand = new Random();
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            //move the images that are onscreen
             MoveImages();
-            if (r.Next(100) == 0)
+
+            //add a new image with a 1/100 chance
+            if (rand.Next(100) == 0)
             {
                 AddImage();
             }
         }
 
         //spawn a new image and add it to the image list
+        //right now the image is spawned in a random spot outside the screen border, but I plan to make this method more robust later
         private void AddImage()
         {
+            //build the image from the resource specified in App.xaml
             Image image = new Image();
             image.Source = Application.Current.FindResource("DVa") as BitmapImage;
 
-            double scale = r.NextDouble() + 0.5;
+            double scale = rand.NextDouble() + 0.5;
             //scale = 1;
             image.Width = 276 * scale;
             //double.NaN means "auto"
@@ -108,7 +112,7 @@ namespace OverwatchScreenSaver
             image.Height = 287.5 * scale;
 
             //choose a point to spawn at along the top or right border
-            int nextSpawn = r.Next((int)(this.Width + this.Height));
+            int nextSpawn = rand.Next((int)(this.Width + this.Height));
 
             Point location;
             //check if the top border was chosen
@@ -125,11 +129,18 @@ namespace OverwatchScreenSaver
             image.SetValue(Canvas.LeftProperty, location.X);
             image.SetValue(Canvas.TopProperty, location.Y);
 
+            //add the image to the image list so we can refer to it later
+            //I plan on making an extended image class later that holds all the location data and stuff together for more complex
+                //manipulation, rather than just two parallel lists that hopefully don't break and everything lines up right
+
+            //imageLayer = canvas defined in ScreenSaverWindow.xaml that holds and displayes the images
+            //imageList = abstract list of all the images to keep track of which is which
             imageLayer.Children.Add(image);
             imageList.Add(image);
         }
 
         //cycle through the image list and move them based on global velocity
+        Vector velocity = new Vector(-1, 1);
         private void MoveImages()
         {
             for (int i = 0; i < imageList.Count; i++)
@@ -141,6 +152,7 @@ namespace OverwatchScreenSaver
                 image.SetValue(Canvas.LeftProperty, x);
                 image.SetValue(Canvas.TopProperty, y);
 
+                //check if the image is below or to the left of the screen
                 if (x < -image.Width || y > this.Height)
                 {
                     RemoveImage(i);
@@ -149,6 +161,7 @@ namespace OverwatchScreenSaver
             }
         }
 
+        //removes the image at the given index from the image list
         private void RemoveImage(int index)
         {
             imageLayer.Children.RemoveAt(index);
