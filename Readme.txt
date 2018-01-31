@@ -1,3 +1,6 @@
+* This project is very old and not maintained.
+* There are no guarantees that it functions
+
 ==============================================
             Overwatch Screen Saver
                    v0.1.0.0
